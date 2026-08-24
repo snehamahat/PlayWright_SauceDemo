@@ -12,7 +12,7 @@ export class ProductPage{
     async openAboutPage()
     {
         await this.page.click(productPageLocators.settingIcon);
-        await this.page.click(productPageLocators.settingIcon)
+        await this.page.click(productPageLocators.aboutlink)
     }
 
 }
