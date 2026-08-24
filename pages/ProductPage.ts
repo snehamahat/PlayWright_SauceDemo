@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { productPageLocators } from "../locators/ProductPageLocators";
 
-export class ProductPageLocators{
+export class ProductPage{
     constructor(private page:Page){}
     async logout()
     {
@@ -14,5 +14,5 @@ export class ProductPageLocators{
         await this.page.click(productPageLocators.settingIcon);
         await this.page.click(productPageLocators.settingIcon)
     }
-    
+
 }
