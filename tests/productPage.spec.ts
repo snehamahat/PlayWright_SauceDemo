@@ -32,11 +32,13 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test.only("validate product page",async({page})=>
-    {
-        await productPage.validateAllProductsDisplayed();
+    test.only("validate product page", async ({ page }) => {
+        const products = await productPage.validateAllProductsDisplayed();
+        expect(products.names.length).toBeGreaterThan(0);
+        expect(products.prices.length).toBe(products.names.length);
         await productPage.addFirstProductToCart();
         await productPage.addAllProductsToCart()
+
 
     })
 
