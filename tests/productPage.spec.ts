@@ -32,7 +32,7 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test("validate product page",async({page})=>
+    test.only("validate product page",async({page})=>
     {
         await productPage.validateAllProductsDisplayed();
         await productPage.addFirstProductToCart();
