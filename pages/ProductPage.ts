@@ -26,7 +26,30 @@ export class ProductPage{
 
         if(names.length!==descriptions.length||names.length!==price.length||names.length!==buttonCount.length)
             throw new Error("Mismatch between the product Details")
+
+
 }
+async addFirstProductToCart()
+{
+    await this.page.locator(productPageLocators.addToCartButtons).first().click();
+
+}
+
+async addAllProductsToCart()
+{
+    const buttons=this.page.locator(productPageLocators.addToCartButtons)
+    const count =await buttons.count();
+
+    for(let i=0;i<count;i++)
+    {
+        await buttons.nth(i).click();
+        await this.page.waitForTimeout(3000)
+
+    }
+
+}
+
+
 
 
 

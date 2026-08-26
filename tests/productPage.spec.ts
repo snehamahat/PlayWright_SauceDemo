@@ -22,6 +22,7 @@ test.describe("Product Page Validation", () => {
         await expect(page.locator(LoginLocators.loginButton)).toBeVisible();
     })
 
+
     test("Validate About page and navigate back", async ({ page }) => {
         await productPage.openAboutPage();
         await expect(page.locator(productPageLocators.requestDemoButton).first()).toBeVisible();
@@ -30,4 +31,13 @@ test.describe("Product Page Validation", () => {
         await expect(page.locator(productPageLocators.settingIcon)).toBeVisible()
 
     })
+
+    test("validate product page",async({page})=>
+    {
+        await productPage.validateAllProductsDisplayed();
+        await productPage.addFirstProductToCart();
+        await productPage.addAllProductsToCart()
+
+    })
+
 })
