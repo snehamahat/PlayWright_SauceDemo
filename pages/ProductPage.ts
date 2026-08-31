@@ -52,11 +52,38 @@ export class ProductPage {
             {
                 await this.page.locator(productPageLocators.addToCartButtons).nth(i).click();
                 await this.page.waitForTimeout(3000);
-
             }
 
         }
+    }
 
+    async filterByNameAtoZ()
+    {
+        await this.page.selectOption(productPageLocators.filterDropdown,"az");
+    }
+
+    async filterByNameZtoA()
+    {
+        await this.page.selectOption(productPageLocators.filterDropdown,"za");
+
+    }
+    async filterByPriceLowToHigh()
+    {
+        await this.page.selectOption(productPageLocators.filterDropdown,"lohi");
+    }
+    async filterByPriceHighToLow()
+    {
+        await this.page.selectOption(productPageLocators.filterDropdown,"hilo");
+    }
+    async getProductNames()
+    {
+        return await this.page.locator(productPageLocators.productNames).allTextContents()
+    }
+
+    async getProductPrices()
+    {
+        const prices=await this.page.locator(productPageLocators.productPrices).allTextContents();
+        return prices.map(price=>parseFloat(price.replace('$','')))
 
     }
 

@@ -7,7 +7,12 @@ export const productPageLocators ={
     productNames:".inventory_item_name ",
     productDescription:".inventory_item_desc",
     productPrices:".inventory_item_price",
-    addToCartButtons:".btn.btn_primary.btn_small.btn_inventory"
+    addToCartButtons:".btn.btn_primary.btn_small.btn_inventory",
+    filterDropdown : ".product_sort_container",
+    filterAtoZ:"option[value='az']",
+    filterZtoA:"option[value='za']",
+    filterHighToLow:"option[value='hilo']",
+    filterLowToHigh:"option[value='lohi']"
 
 
 
