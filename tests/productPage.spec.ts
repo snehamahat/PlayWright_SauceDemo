@@ -63,14 +63,14 @@ test.describe("Product Page Validation", () => {
         expect(names).toEqual(sorted);
     })
 
-    test.only("Filter By Price LowToHigh",async()=>
+    test("Filter By Price LowToHigh",async()=>
     {
         await productPage.filterByPriceLowToHigh();
         const price=await productPage.getProductPrices();
         const sortedprice=[...price].sort((a,b)=>a-b);
         expect(price).toEqual(sortedprice);
     })
-    test("Filter By Price HighToLow",async()=>
+    test.only("Filter By Price HighToLow",async()=>
     {
         await productPage.filterByPriceHighToLow();
         const price=await productPage.getProductPrices();
