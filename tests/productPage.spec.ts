@@ -4,6 +4,7 @@ import { ProductPage } from '../pages/ProductPage'
 import { LoginPage } from '../pages/LoginPage'
 import { productPageLocators } from '../locators/ProductPageLocators'
 import { LoginLocators } from '../locators/LoginLocators'
+import { productsToCart } from '../test-data/products'
 
 test.describe("Product Page Validation", () => {
     let loginPage: LoginPage
@@ -32,12 +33,21 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test.only("validate product page", async ({ page }) => {
+    test("validate product page", async ({ page }) => {
         const products = await productPage.validateAllProductsDisplayed();
         expect(products.names.length).toBeGreaterThan(0);
         expect(products.prices.length).toBe(products.names.length);
         await productPage.addFirstProductToCart();
         await productPage.addAllProductsToCart()
+
+
+    })
+
+    test("validate some product in addtocart", async ({ page }) => {
+        await productPage.addSpecificProductsToCart(productsToCart);
+
+
+        
 
 
     })

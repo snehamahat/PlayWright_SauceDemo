@@ -41,6 +41,25 @@ export class ProductPage {
 
     }
 
+    async addSpecificProductsToCart(productName : string[])
+    {
+        const addProducts=this.page.locator(productPageLocators.productNames);
+        const count =await addProducts.count();
+        for (let i=0;i<count;i++)
+        {
+            const name =await addProducts.nth(i).textContent();
+            if(name && productName.includes(name.trim()))
+            {
+                await this.page.locator(productPageLocators.addToCartButtons).nth(i).click();
+                await this.page.waitForTimeout(3000);
+
+            }
+
+        }
+
+
+    }
+
 
 
 
