@@ -43,13 +43,26 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test.only("validate some product in addtocart", async ({ page }) => {
+    test("validate some product in addtocart", async ({ page }) => {
         await productPage.addSpecificProductsToCart(productsToCart);
-
-
-        
-
-
     })
+
+    test("Filter By Name A to Z",async()=>
+    {
+        await productPage.filterByNameAtoZ();
+        const names=await productPage.getProductNames();
+        const sorted=[...names].sort();
+        expect(names).toEqual(sorted);
+    })
+
+    test.only("Filter By Name Z to A",async()=>
+    {
+        await productPage.filterByNameZtoA();
+        const names=await productPage.getProductNames();
+        const sorted=[...names].sort().reverse();
+        expect(names).toEqual(sorted);
+    })
+
+
 
 })
