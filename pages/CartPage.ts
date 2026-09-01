@@ -1,7 +1,8 @@
 import { Page } from "@playwright/test";
 import { cartPagelocators } from "../locators/cartPageLocators";
 
-export class cartPageLocators
+
+export class CartPage
 {
     constructor(private page : Page){}
 
@@ -19,7 +20,7 @@ export class cartPageLocators
                 const alldescription = await this.page.locator(cartPagelocators.productDescription).allTextContents();
                 const allprice = await this.page.locator(cartPagelocators.productPrices).allTextContents();
         
-                const allproducts = allNames.map((_, i) =>
+                const allcartproducts = allNames.map((_, i) =>
                 ({
                     name: allNames[i].trim(),
                     description: alldescription[i].trim(),
@@ -27,9 +28,13 @@ export class cartPageLocators
         
                 }))
         
-                return allproducts;
+                return allcartproducts;
         
 
+    }
+    async removeFirstProduct()
+    {
+        await this.page.locator(cartPagelocators.removeButton).click();
     }
 
 

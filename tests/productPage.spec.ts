@@ -5,10 +5,12 @@ import { LoginPage } from '../pages/LoginPage'
 import { productPageLocators } from '../locators/ProductPageLocators'
 import { LoginLocators } from '../locators/LoginLocators'
 import { productsToCart } from '../test-data/products'
+import { cartPagelocators } from '../locators/cartPageLocators'
 
 test.describe("Product Page Validation", () => {
     let loginPage: LoginPage
     let productPage: ProductPage
+
     //runs before other tests
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page);
