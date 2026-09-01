@@ -12,7 +12,8 @@ export const productPageLocators ={
     filterAtoZ:"option[value='az']",
     filterZtoA:"option[value='za']",
     filterHighToLow:"option[value='hilo']",
-    filterLowToHigh:"option[value='lohi']"
+    filterLowToHigh:"option[value='lohi']",
+    shoppingCart:".shopping_cart_link"
 
 
 

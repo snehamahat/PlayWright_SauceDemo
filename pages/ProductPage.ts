@@ -87,6 +87,30 @@ export class ProductPage {
 
     }
 
+    async clickOnCartLink()
+    {
+        await this.page.locator(productPageLocators.shoppingCart).click();
+    }
+
+    async getFirstProductDetails()
+    {
+
+    }
+
+    async getAllProductDetails()
+    {
+
+    }
+    async getSpecificProductDetails()
+    {
+        
+    }
+
+
+
+
+
+
 
 
 
