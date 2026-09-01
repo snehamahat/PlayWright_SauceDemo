@@ -41,15 +41,12 @@ export class ProductPage {
 
     }
 
-    async addSpecificProductsToCart(productName : string[])
-    {
-        const addProducts=this.page.locator(productPageLocators.productNames);
-        const count =await addProducts.count();
-        for (let i=0;i<count;i++)
-        {
-            const name =await addProducts.nth(i).textContent();
-            if(name && productName.includes(name.trim()))
-            {
+    async addSpecificProductsToCart(productName: string[]) {
+        const addProducts = this.page.locator(productPageLocators.productNames);
+        const count = await addProducts.count();
+        for (let i = 0; i < count; i++) {
+            const name = await addProducts.nth(i).textContent();
+            if (name && productName.includes(name.trim())) {
                 await this.page.locator(productPageLocators.addToCartButtons).nth(i).click();
                 await this.page.waitForTimeout(3000);
             }
@@ -57,53 +54,82 @@ export class ProductPage {
         }
     }
 
-    async filterByNameAtoZ()
-    {
-        await this.page.selectOption(productPageLocators.filterDropdown,"az");
+    async filterByNameAtoZ() {
+        await this.page.selectOption(productPageLocators.filterDropdown, "az");
     }
 
-    async filterByNameZtoA()
-    {
-        await this.page.selectOption(productPageLocators.filterDropdown,"za");
+    async filterByNameZtoA() {
+        await this.page.selectOption(productPageLocators.filterDropdown, "za");
 
     }
-    async filterByPriceLowToHigh()
-    {
-        await this.page.selectOption(productPageLocators.filterDropdown,"lohi");
+    async filterByPriceLowToHigh() {
+        await this.page.selectOption(productPageLocators.filterDropdown, "lohi");
     }
-    async filterByPriceHighToLow()
-    {
-        await this.page.selectOption(productPageLocators.filterDropdown,"hilo");
+    async filterByPriceHighToLow() {
+        await this.page.selectOption(productPageLocators.filterDropdown, "hilo");
     }
-    async getProductNames()
-    {
+    async getProductNames() {
         return await this.page.locator(productPageLocators.productNames).allTextContents()
     }
 
-    async getProductPrices()
-    {
-        const prices=await this.page.locator(productPageLocators.productPrices).allTextContents();
-        return prices.map(price=>parseFloat(price.replace('$','')))
+    async getProductPrices() {
+        const prices = await this.page.locator(productPageLocators.productPrices).allTextContents();
+        return prices.map(price => parseFloat(price.replace('$', '')))
 
     }
 
-    async clickOnCartLink()
-    {
+    async clickOnCartLink() {
         await this.page.locator(productPageLocators.shoppingCart).click();
     }
 
-    async getFirstProductDetails()
-    {
+    async getFirstProductDetails() {
+        const name = await this.page.locator(productPageLocators.productNames).first().textContent();
+        const description = await this.page.locator(productPageLocators.productDescription).first().textContent();
+        const price = await this.page.locator(productPageLocators.productPrices).first().textContent();
+
+        return
+        {
+            name: name?.trim();
+            description: description?.trim();
+            price: price?.trim();
+
+        }
 
     }
 
-    async getAllProductDetails()
-    {
+    async getAllProductDetails() {
+        const allNames = await this.page.locator(productPageLocators.productNames).allTextContents();
+        const alldescription = await this.page.locator(productPageLocators.productDescription).allTextContents();
+        const allprice = await this.page.locator(productPageLocators.productPrices).allTextContents();
+
+        const allproducts = allNames.map((_, i) =>
+        ({
+            name: allNames[i].trim(),
+            description: alldescription[i].trim(),
+            price: allprice[i].trim()
+
+        }))
+
+        return allproducts;
+
 
     }
-    async getSpecificProductDetails()
-    {
+    async getSpecificProductDetails(productName:String[]) {
+         const allNames = await this.page.locator(productPageLocators.productNames).allTextContents();
+        const alldescription = await this.page.locator(productPageLocators.productDescription).allTextContents();
+        const allprice = await this.page.locator(productPageLocators.productPrices).allTextContents();
+
+        const allproducts = allNames.map((_, i) =>
+        ({
+            name: allNames[i].trim(),
+            description: alldescription[i].trim(),
+            price: allprice[i].trim()
+
+        }))
+
+        return allproducts.filter(p=>productName.includes(p.name));
         
+
     }
 
 
