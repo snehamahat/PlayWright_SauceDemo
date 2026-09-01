@@ -8,7 +8,12 @@ export class CartPage
 
     async clicktocontinueShopping()
     {
-        return{
+        await this.page.locator(cartPagelocators.continueshop).click();
+    }
+
+    async getCartPageElements()
+    {
+         return{
             carttitle:this.page.locator(cartPagelocators.carttitle),
             shoppingCart:this.page.locator(cartPagelocators.continueshop),
             checkOut:this.page.locator(cartPagelocators.checkout)
