@@ -29,7 +29,10 @@ test.describe("Product Page Validation", () => {
         await productPage.addFirstProductToCart();
         await productPage.clickOnCartLink();
         await expect(page).toHaveURL("https://www.saucedemo.com/cart.html")
-        cartpage.getCartPageElements()
+        const ui=cartpage.getCartPageElements()
+        await expect((await ui).carttitle).toBeVisible();
+        expect((await ui).shoppingCart).toBeVisible();
+        
     })
 
     test("Validate Continue Shopping Functionality",async({page})=>
