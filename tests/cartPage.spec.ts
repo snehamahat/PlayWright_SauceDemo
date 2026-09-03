@@ -35,7 +35,7 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test.only("Validate Continue Shopping Functionality",async({page})=>
+    test("Validate Continue Shopping Functionality",async({page})=>
     {
         await productPage.addFirstProductToCart();
         await productPage.clickOnCartLink();
@@ -43,7 +43,14 @@ test.describe("Product Page Validation", () => {
         await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html")
     })
 
-    test("Validate Single Product in the Cart Page",async({page})=>{
+    test.only("Validate Single Product in the Cart Page",async({page})=>{
+         const firstProduct=await productPage.getFirstProductDetails();
+         await productPage.addFirstProductToCart();
+         await productPage.clickOnCartLink();
+         await page.waitForTimeout(2000)
+         const cartProducts=await cartpage.getCartProducts();
+         expect(cartProducts[0]).toEqual(firstProduct);
+
 
     })
 

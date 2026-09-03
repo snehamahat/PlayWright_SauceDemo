@@ -87,11 +87,10 @@ export class ProductPage {
         const description = await this.page.locator(productPageLocators.productDescription).first().textContent();
         const price = await this.page.locator(productPageLocators.productPrices).first().textContent();
 
-        return
-        {
-            name: name?.trim();
-            description: description?.trim();
-            price: price?.trim();
+        return{
+            name: name?.trim(),
+            description: description?.trim(),
+            price: price?.trim()
 
         }
 
