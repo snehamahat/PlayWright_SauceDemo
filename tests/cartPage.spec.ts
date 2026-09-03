@@ -56,6 +56,13 @@ test.describe("Product Page Validation", () => {
 
     test("validate All products added to the Cart Page",async({page})=>
     {
+        const allProductsDetails =await productPage.getAllProductDetails();
+        await productPage.addAllProductsToCart();
+        await productPage.clickOnCartLink();
+        const cartProducts=await cartpage.getCartProducts();
+        expect(cartProducts[0]).toEqual(allProductsDetails);
+
+
 
     })
     test("Validate specific Products added to the Cart Page",async({page})=>
