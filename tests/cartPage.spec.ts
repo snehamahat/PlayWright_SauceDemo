@@ -32,16 +32,18 @@ test.describe("Product Page Validation", () => {
         const ui=cartpage.getCartPageElements()
         await expect((await ui).carttitle).toBeVisible();
         expect((await ui).shoppingCart).toBeVisible();
-        
-    })
-
-    test("Validate Continue Shopping Functionality",async({page})=>
-    {
 
     })
 
-    test("Validate Single Product in the Cart Page",async({page})=>
+    test.only("Validate Continue Shopping Functionality",async({page})=>
     {
+        await productPage.addFirstProductToCart();
+        await productPage.clickOnCartLink();
+        await cartpage.clicktocontinueShopping();
+        await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html")
+    })
+
+    test("Validate Single Product in the Cart Page",async({page})=>{
 
     })
 
