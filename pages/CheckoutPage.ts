@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { CheckOutPageLocators } from "../locators/checkoutPageLocators";
 
-export class checkoutPageLocators
+export class checkoutPage
 {
     constructor(private page:Page){}
 
@@ -31,7 +31,7 @@ export class checkoutPageLocators
         await this.page.click(CheckOutPageLocators.continueButton);
     }
 
-    
+
 
 
 
