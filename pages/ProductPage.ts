@@ -87,7 +87,7 @@ export class ProductPage {
         const description = await this.page.locator(productPageLocators.productDescription).first().textContent();
         const price = await this.page.locator(productPageLocators.productPrices).first().textContent();
 
-        return{
+        return {
             name: name?.trim(),
             description: description?.trim(),
             price: price?.trim()
@@ -113,8 +113,8 @@ export class ProductPage {
 
 
     }
-    async getSpecificProductDetails(productName:String[]) {
-         const allNames = await this.page.locator(productPageLocators.productNames).allTextContents();
+    async getSpecificProductDetails(productName: String[]) {
+        const allNames = await this.page.locator(productPageLocators.productNames).allTextContents();
         const alldescription = await this.page.locator(productPageLocators.productDescription).allTextContents();
         const allprice = await this.page.locator(productPageLocators.productPrices).allTextContents();
 
@@ -126,8 +126,8 @@ export class ProductPage {
 
         }))
 
-        return allproducts.filter(p=>productName.includes(p.name));
-        
+        return allproducts.filter(p => productName.includes(p.name));
+
 
     }
 

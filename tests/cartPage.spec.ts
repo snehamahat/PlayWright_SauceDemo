@@ -54,7 +54,7 @@ test.describe("Product Page Validation", () => {
 
     })
 
-    test.only("validate All products added to the Cart Page",async({page})=>
+    test("validate All products added to the Cart Page",async({page})=>
     {
         const allProductsDetails =await productPage.getAllProductDetails();
         await productPage.addAllProductsToCart();
@@ -65,10 +65,14 @@ test.describe("Product Page Validation", () => {
 
 
     })
-    test("Validate specific Products added to the Cart Page",async({page})=>
+    test.only("Validate specific Products added to the Cart Page",async({page})=>
     {
-
-
+        const getSpecificProductDetails=await productPage.getSpecificProductDetails(productsToCart);
+        await productPage.addSpecificProductsToCart(productsToCart);
+        await productPage.clickOnCartLink();
+        const cartProducts=await cartpage.getCartProducts();
+        expect(cartProducts).toEqual(getSpecificProductDetails);
+    
     })
     test("Validate Remove Product Functionality",async({page})=>
     {
