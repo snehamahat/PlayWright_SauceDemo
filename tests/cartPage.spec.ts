@@ -65,7 +65,7 @@ test.describe("Product Page Validation", () => {
 
 
     })
-    test.only("Validate specific Products added to the Cart Page",async({page})=>
+    test("Validate specific Products added to the Cart Page",async({page})=>
     {
         const getSpecificProductDetails=await productPage.getSpecificProductDetails(productsToCart);
         await productPage.addSpecificProductsToCart(productsToCart);
@@ -76,7 +76,14 @@ test.describe("Product Page Validation", () => {
     })
     test("Validate Remove Product Functionality",async({page})=>
     {
-
+        await productPage.addAllProductsToCart();
+        await productPage.clickOnCartLink();
+        const initialProducts=await cartpage.getCartProducts();
+        expect(initialProducts.length).toBeGreaterThan(0)
+        await cartpage.removeFirstProduct()
+        const updatedCartProducts=await cartpage.getCartProducts();
+        expect(updatedCartProducts.length).toBe(initialProducts.length-1);
+        
     })
 
 })
