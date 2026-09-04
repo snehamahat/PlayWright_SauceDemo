@@ -1,0 +1,10 @@
+export const CheckOutPageLocators=
+{
+    pageInfo:".title",
+    cancelButton:"#cancel",
+    continueButton:"#continue",
+    firstName:"#first-name",
+    lastName:"#last-name",
+    postalCode:"#postal-code",
+
+}
