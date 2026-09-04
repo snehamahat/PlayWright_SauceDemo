@@ -52,9 +52,6 @@ test.describe("Product Page Validation", () => {
         await checkoutpage.fillCheckOutDetails(checkoutData.firstName,checkoutData.lastName,checkoutData.postalCode);
         await checkoutpage.clickOnContinue();
         await expect(page).toHaveURL("https://www.saucedemo.com/checkout-step-two.html")
-
-
-
     })
 
 }) 
